@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <div class="text">adsadada</div>
-    </div>
     <router-view />
   </div>
 </template>
@@ -19,8 +15,9 @@ export default {}
 </script>
 
 <style lang='scss' scoped>
-@import url('./assets/styles/global.scss');
-.text{
-    font-size: px2rem(10);
+#app{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 </style>

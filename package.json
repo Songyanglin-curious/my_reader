@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "epubjs": "^0.3.92",
+    "epubjs": "^0.3.71",
     "vue": "^2.6.11",
+    "vue-i18n": "^8.27.0",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "web-storage-cache": "^1.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -31,6 +33,7 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^3.3.1",
+    "true-case-path": "^2.2.1",
     "vue-template-compiler": "^2.6.11"
   }
 }
