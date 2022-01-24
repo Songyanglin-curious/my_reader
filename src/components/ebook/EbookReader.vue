@@ -12,7 +12,7 @@ import {
   getFontSize, saveFontSize,
   getTheme, saveTheme,
 } from '@/utils/localStorage'
-
+import {addCss} from '@/utils/book'
 // global.ePub = Epub
 export default {
   mixins: [ebookMixin],
@@ -77,6 +77,9 @@ export default {
       });
       this.rendition.themes.select(defaultTheme)
     },
+    initGlobalStyle(){
+        addCss(`${process.env.VUE_APP_RES_URL}/theme/theme_default.css`)
+    },
     initEpub () {
       const url = `${process.env.VUE_APP_RES_URL}/epub/` + this.fileName + '.epub'
       this.book = new Epub(url)
@@ -90,6 +93,7 @@ export default {
         this.initfontFamily()
         this.initfontSize()
         this.initTheme()
+        this.initGlobalStyle()
       })
       this.rendition.on('touchstart', event => {
         this.touchStartX = event.changedTouches[0].clientX
