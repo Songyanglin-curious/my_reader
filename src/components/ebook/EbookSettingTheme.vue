@@ -30,9 +30,10 @@ export default {
 
       this.setDefaultTheme(name).then(() => {
         this.currentBook.rendition.themes.select(this.defaultTheme)
-        saveTheme(this.fileName, name)
-      })
+        this.initGlobalStyle()
 
+      })
+      saveTheme(this.fileName, name)
     }
   }
 }
