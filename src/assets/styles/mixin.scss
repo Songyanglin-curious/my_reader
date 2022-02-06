@@ -25,3 +25,30 @@ $ratio : 375 / 10;
     overflow: hidden;
     white-space: nowrap;
 }
+
+@mixin ellipsis2($line) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+    word-break: keep-all;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+  } 
+
+@mixin columnLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .icon{
+      color: #666;
+      font-size: px2rem((16));
+  }
+  .title{
+      color: #666;
+      font-size: px2rem((16));
+      font-weight: bold;
+  }
