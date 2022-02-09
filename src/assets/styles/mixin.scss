@@ -1,3 +1,6 @@
+$animationTime: .2s;
+$animationType: linear;
+$bookShowTime: 0.5s;
 $ratio : 375 / 10;
 @function px2rem($px) {
     @return $px/ $ratio + rem;
@@ -7,9 +10,29 @@ $ratio : 375 / 10;
     justify-content: center;
     align-items: center;
 }
+@mixin absCenter{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
 
 @mixin left {
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+@mixin columnLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+@mixin columnTop {
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }

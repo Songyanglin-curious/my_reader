@@ -6,6 +6,8 @@ import i18n from './lang'
 // 引入字体图标
 import './assets/styles/icon.css'
 import './assets/styles/global.scss'
+// mockjs
+import './mock'
 
 Vue.config.productionTip = false
 
