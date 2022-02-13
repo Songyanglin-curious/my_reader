@@ -2,7 +2,7 @@
   <transition name="slide-down">
     <div class="title-wrapper" v-show="menuVisible">
       <div class="left">
-        <span class="icon-back" @click="back"></span>
+        <span class="icon-back" @click.stop="back"></span>
       </div>
       <div class="right">
         <div class="icon-wrapper">
@@ -25,7 +25,7 @@ export default {
   mixins: [ebookMixin],
   methods: {
     back () {
-      console.log('back')
+     this.$router.go(-1)
     }
   }
 }
@@ -38,7 +38,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 101;
+  z-index: 200;
   display: flex;
   width: 100%;
   height: px2rem(48);
@@ -47,6 +47,7 @@ export default {
   font-size: px2rem(20);
   .left {
     flex: 0 0 px2rem(60);
+    // z-index: 120;
     @include center;
   }
   .right {

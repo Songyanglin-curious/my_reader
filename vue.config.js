@@ -1,3 +1,12 @@
+function mock(app,url,data){
+    app.get(url,(request,response) => {
+        response.json(data)
+    })
+}
+const homeData = require('./src/mock/bookHome')
+const shelfData = require('./src/mock/bookShelf')
+const listData = require('./src/mock/bookList')
+const flatListData = require('./src/mock/bookFlatList')
 const path = require('path');
 module.exports = {
     // publicPath : process.env.NODE_ENV = 'production' ? './' : '/',
@@ -39,6 +48,12 @@ module.exports = {
         https: false, // 编译失败时刷新页面
         hot: true, // 开启热加载
         hotOnly: false,
+        before(app){
+            mock(app,'/book/home',homeData)
+            mock(app,'/book/shelf',shelfData)
+            mock(app,'/book/list',listData)
+            mock(app,'/book/flat-list',flatListData)
+        }
         // proxy: {
         //   [process.env.VUE_APP_API]: {
         //       target: process.env.VUE_API_DEV_TARGET, //API服务器的地址

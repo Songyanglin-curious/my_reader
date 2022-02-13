@@ -7,8 +7,9 @@ import i18n from './lang'
 import './assets/styles/icon.css'
 import './assets/styles/global.scss'
 // mockjs
-import './mock'
-
+// import './mock'
+import './utils/boost'
+import './utils/create-api'
 Vue.config.productionTip = false
 
 new Vue({

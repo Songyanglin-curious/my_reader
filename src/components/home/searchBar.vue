@@ -24,6 +24,7 @@
             class="input"
             :placeholder="$t('home.hint')"
             v-model="searchText"
+            @keyup.enter.exact="search"
             @click="showHotSearch"
           />
         </div>
@@ -49,6 +50,14 @@ export default {
     };
   },
   methods: {
+    search () {
+      this.$route.push({
+        path: '/store/list',
+        query: {
+          keyword: this.searchText
+        }
+      })
+    },
     hideTitle () {
       this.titleVisible = false
     },
@@ -82,11 +91,19 @@ export default {
         this.hideShadow()
         this.showTitle()
       }
-      this.hideHotSearch()
+      // 如果是热门搜索的页面,返回首页
+      if(this.hotSearchVisible){
+        this.hideHotSearch()
+      }else{
+        // 返回书架
+        this.$router.push('/store/shelf')
+      }
+      
     },
-    showFlapCard(){
-        this.setFlapCardVisible(true)
-    }
+    showFlapCard () {
+      this.setFlapCardVisible(true)
+    },
+
   },
   watch: {
     offsetY (offsetY) {

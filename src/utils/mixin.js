@@ -1,8 +1,8 @@
 import { mapGetters } from 'vuex'
 import { mapActions } from 'vuex'
 import { themeList, addCss, removeAllCss, getReadTimeByMinute } from '@/utils/book'
-import { saveLocation ,getBookmark} from '@/utils/localStorage'
-
+import { saveLocation, getBookmark } from '@/utils/localStorage'
+import {gotoBookDetail} from '@/utils/store'
 export const ebookMixin = {
     computed: {
         ...mapGetters([
@@ -82,24 +82,24 @@ export const ebookMixin = {
                 this.setSection(currentLocation.start.index)
                 saveLocation(this.fileName, startCfi)
                 const bookmark = getBookmark(this.fileName)
-                if(bookmark){
-                    if(bookmark.some(item => item.cfi === startCfi)){
+                if (bookmark) {
+                    if (bookmark.some(item => item.cfi === startCfi)) {
                         this.setIsBookmark(true)
-                    }else{
+                    } else {
                         this.setIsBookmark(false)
                     }
-                }else{
+                } else {
                     this.setIsBookmark(false)
                 }
-                if(this.pagelist){
+                if (this.pagelist) {
                     const totalPage = this.pagelist.length
                     const currentPage = currentLocation.start.location
-                    if(currentPage && currentPage > 0){
+                    if (currentPage && currentPage > 0) {
                         this.setPaginate(currentPage + '/' + totalPage)
-                    }else{
+                    } else {
                         this.setPaginate('')
                     }
-                }else{
+                } else {
                     this.setPaginate('')
                 }
             }
@@ -143,14 +143,39 @@ export const storeHomeMixin = {
             'flapCardVisible'
         ])
     },
-    methods:{
+    methods: {
         ...mapActions([
             'setOffsetY',
             'setHotSearchOffsetY',
             'setFlapCardVisible'
         ]),
-        showBookDetail(book){
-            console.log(11111111111111)
+        showBookDetail (book) {
+            gotoBookDetail(this,book)
+        }
+
+    }
+}
+
+export const storeShelfMixin = {
+    computed: {
+        ...mapGetters([
+            'isEditMode',
+            'shelfList',
+            'shelfSelected',
+            'shelfTitleVisible',
+            'offsetY',
+        ])
+    },
+    methods: {
+        ...mapActions([
+            'setIsEditMode',
+            'setShelfList',
+            'setShelfSelected',
+            'setShelfTitleVisible',
+            'setOffsetY',
+        ]),
+        showBookDetail (book) {
+            gotoBookDetail(this,book)
         }
     }
 }

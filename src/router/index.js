@@ -22,14 +22,26 @@ const routes = [
   {
       path: '/store',
       component: () => import('@/views/store/'),
-      redirect: '/store/home',
+      redirect: '/store/shelf',
       children:[
+          {
+              path: 'shelf',
+              component: () => import('@/views/store/StoreShelf')
+          },
           {
               path: 'home',
               component: () => import('@/views/store/storeHome')
-          }
+          },
+          {
+              path: 'list',
+              component: () => import('@/views/store/StoreList')
+          },
+          {
+              path: 'detail',
+              component: () => import('@/views/store/StoreDetail')
+          },
       ]
-  }
+  },
 
 ]
 
