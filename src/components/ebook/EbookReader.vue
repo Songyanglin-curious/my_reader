@@ -23,7 +23,8 @@ import {
   getLocation,
 } from '@/utils/localStorage'
 import { flatten } from '@/utils/book'
-// global.ePub = Epub
+import { getLocalForage } from '@/utils/localForage'
+global.ePub = Epub
 
 export default {
   mixins: [ebookMixin],
@@ -237,8 +238,8 @@ export default {
 
       })
     },
-    initEpub () {
-      const url = `${process.env.VUE_APP_RES_URL}/epub/` + this.fileName + '.epub'
+    initEpub (url) {
+
       this.book = new Epub(url)
       this.setCurrentBook(this.book)
       this.initRendition()
@@ -262,13 +263,13 @@ export default {
             }
           })
           let currentPage = 1
-          this.navigation.forEach((nav,index) => {
-              if(index === 0){
-                  nav.page = 1
-              }else{
-                  nav.page = currentPage
-              }
-              currentPage += nav.pagelist.length + 1
+          this.navigation.forEach((nav, index) => {
+            if (index === 0) {
+              nav.page = 1
+            } else {
+              nav.page = currentPage
+            }
+            currentPage += nav.pagelist.length + 1
           })
         })
         this.setPagelist(locations)
@@ -278,9 +279,26 @@ export default {
     }
   },
   mounted () {
-    const fileName = this.$route.params.fileName.split('|').join('/')
-    this.setFileName(fileName).then(
-      () => { this.initEpub() })
+    const books = this.$route.params.fileName.split('|')
+    const fileName = books[1]
+    getLocalForage(fileName, (err, blob) => {
+      if (!err && blob) {
+
+        this.setFileName(books.join('/')).then(() => {
+          this.initEpub(blob)
+        })
+        console.log('找到了离线缓存电子书')
+      } else {
+
+        this.setFileName(this.$route.params.fileName.split('|').join('/')).then(
+          () => {
+            const url = `${process.env.VUE_APP_RES_URL}/epub/` + this.fileName + '.epub'
+            this.initEpub(url)
+          })
+        console.log('在线获取电子书')
+      }
+    })
+
   },
 
 };

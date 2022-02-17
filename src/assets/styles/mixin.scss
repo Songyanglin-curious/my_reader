@@ -53,6 +53,19 @@ $ratio : 375 / 10;
     justify-content: flex-end;
     align-items: center;
 }
+@mixin leftBottom {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+@mixin scroll {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 
 @mixin ellipsis {
     text-overflow: ellipsis;

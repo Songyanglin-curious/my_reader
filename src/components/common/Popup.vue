@@ -29,13 +29,15 @@ export default {
   data () {
     return {
       popupVisible: false,
+      //为了显示延迟，体现过度动画   
       visible: false,
     };
   },
   methods: {
     show () {
-
+      // 先显示popup，再显示按钮，使得过度动画显示完整
       this.popupVisible = true
+    //定时器是为了使得宏任务完成，即popup显示完成后，再显示按钮 使得过度动画流畅   
       setTimeout(() => {
         this.visible = true
       });

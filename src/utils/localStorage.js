@@ -9,7 +9,7 @@ export function getLocalStorage (key) {
     return localStorage.get(key)
 }
 export function removeLocalStorage (key) {
-    return localStorage.sdelete(key)
+    return localStorage.delete(key)
 }
 export function clearLocalStorage () {
     return localStorage.clear()
@@ -127,4 +127,11 @@ export function getTheme (fileName) {
 export function saveTheme (fileName, theme) {
     setBookObject(fileName, 'theme', theme)
 }
+export function saveBookShelf (shelf) {
+    setLocalStorage('shelf', shelf)
+}
+export function getBookShelf () {
+    return getLocalStorage('shelf')
+}
+
 

@@ -1,8 +1,10 @@
 <template>
   <transition name="fade">
-    <div class="toast-bg" v-if="visible">
-      <div class="toast-wrapper">
-        <div class="toast" v-html="text"></div>
+    <div class="toast-bg-wrapper" v-show="visible" @click.prevent>
+      <div class="toast-bg" >
+        <div class="toast-wrapper">
+          <div class="toast" v-html="showText"></div>
+        </div>
       </div>
     </div>
   </transition>
@@ -20,7 +22,8 @@ export default {
   },
   data () {
     return {
-      visible: false
+      visible: false,
+      showText: ''
     }
   },
   methods: {
@@ -28,6 +31,7 @@ export default {
       this.visible = false
     },
     show () {
+      this.updateText(this.text)
       clearTimeout(this.task)
       this.task = null
       this.visible = true
@@ -36,9 +40,13 @@ export default {
       }, this.timeout)
     },
     continueShow () {
+      this.updateText(this.text)
       clearTimeout(this.task)
       this.task = null
       this.visible = true
+    },
+    updateText (text) {
+      this.showText = text
     }
   }
 }
@@ -46,6 +54,14 @@ export default {
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 @import "../../assets/styles/global";
+.toast-bg-wrapper{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2500;
+    width: 100%;
+    height: 100%;
+    background: transparent;
 
 .toast-bg {
   position: absolute;
@@ -69,5 +85,6 @@ export default {
       word-break: break-all;
     }
   }
+}
 }
 </style>
