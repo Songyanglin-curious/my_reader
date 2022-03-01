@@ -20,7 +20,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { realPx } from '@/utils/utils'
+  import { realPx } from '../../utils/utils'
 
   export default {
     props: {

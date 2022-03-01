@@ -14,7 +14,7 @@
 
 <script type="text/ecmascript-6">
 import BookMark from '@c/common/Bookmark'
-import { realPx } from '@/utils/utils'
+import { realPx } from '../../utils/utils'
 import { ebookMixin } from '../../utils/mixin'
 import { saveBookmark, getBookmark } from '../../utils/localStorage'
 

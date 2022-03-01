@@ -20,7 +20,7 @@
 
 <script type="text/ecmascript-6">
   import TitleView from './Title'
-  import { realPx } from '@/utils/utils'
+  import { realPx } from '../../utils/utils'
   import { categoryText } from '../../utils/store'
   import { storeHomeMixin } from '../../utils/mixin'
 

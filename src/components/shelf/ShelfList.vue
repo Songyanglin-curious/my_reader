@@ -14,7 +14,7 @@
 <script>
 import { storeShelfMixin } from '@/utils/mixin'
 import ShelfItem from './ShelfItem'
-import { realPx ,px2rem} from '@/utils/utils'
+import { realPx ,px2rem} from '../../utils/utils'
 export default {
   mixins: [storeShelfMixin],
   props: {

@@ -292,7 +292,7 @@ export default {
 
         this.setFileName(this.$route.params.fileName.split('|').join('/')).then(
           () => {
-            const url = `${process.env.VUE_APP_RES_URL}/epub/` + this.fileName + '.epub'
+            const url = `${process.env.VUE_APP_EPUB_URL}/` + this.fileName + '.epub'
             this.initEpub(url)
           })
         console.log('在线获取电子书')
